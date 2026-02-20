@@ -2,21 +2,25 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from ddgs import DDGS
 import os
-import json
+import sys
 
-# Load environment variables
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils import setup_logger, retry, safe_parse_json, timer
+
 load_dotenv()
 
-# Initialize LLM
+logger = setup_logger("trend_agent")
+
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     api_key=os.getenv("GROQ_API_KEY"),
     temperature=0.7
 )
 
+@retry(max_attempts=3, delay=2.0)
 def search_web(query: str, max_results: int = 10) -> list:
-    """Search the web using DuckDuckGo"""
-    print(f"🔍 Searching web for: {query}")
+    """Search the web — retries 3 times if it fails"""
+    logger.info(f"🔍 Searching: {query}")
     results = []
     with DDGS() as ddgs:
         for r in ddgs.text(query, max_results=max_results):
@@ -25,97 +29,91 @@ def search_web(query: str, max_results: int = 10) -> list:
                 "body": r.get("body", ""),
                 "url": r.get("href", "")
             })
+    logger.info(f"✅ Found {len(results)} results")
     return results
 
-def rank_results(results: list, domain: str, goal: str) -> str:
-    """Use LLM to rank and summarize results by relevance"""
+def fallback_trends(domain: str, goal: str) -> dict:
+    """Fallback — use LLM knowledge if web search fails"""
+    logger.warning("⚠️ Using LLM fallback for trends (no web search)")
     
-    # Format results for LLM
-    results_text = ""
-    for i, r in enumerate(results):
-        results_text += f"\nResult {i+1}:\nTitle: {r['title']}\nSummary: {r['body']}\n"
+    prompt = f"""Web search is unavailable. Based on your training knowledge,
+what are the top 5 trends in {domain} relevant to this goal: {goal}?
 
-    prompt = f"""You are an expert trend analyst for the domain: {domain}
-User goal: {goal}
-
-Here are web search results from today:
-{results_text}
-
-Your task:
-1. Identify the TOP 5 most relevant and trending topics from these results
-2. For each topic give:
-   - A clear title
-   - A 2 sentence summary of why it matters
-   - A relevance score from 1-10 based on how relevant it is to the user's goal
-
-Return your response in this exact JSON format:
+Return in this exact JSON format:
 {{
   "trends": [
     {{
-      "title": "trend title here",
-      "summary": "2 sentence summary here",
+      "title": "trend title",
+      "summary": "2 sentence summary",
       "relevance_score": 8
     }}
   ]
 }}
-
-Return ONLY the JSON. No extra text."""
-
+Return ONLY the JSON."""
+    
     response = llm.invoke(prompt)
-    return response.content
+    return safe_parse_json(response.content, fallback={"trends": []})
 
+@timer
 def run_trend_agent(domain: str, goal: str) -> dict:
-    """Main function — runs the full trend research pipeline"""
+    """Main function with error handling and fallback"""
     
-    print(f"\n🤖 Trend Agent Starting...")
-    print(f"📌 Domain: {domain}")
-    print(f"🎯 Goal: {goal}")
-    print("-" * 50)
-
-    # Step 1: Search the web
-    query = f"{domain} latest trends news 2025"
-    results = search_web(query, max_results=10)
-    print(f"✅ Found {len(results)} web results")
-
-    # Step 2: Rank and summarize with LLM
-    print("🧠 Analyzing results with LLM...")
-    ranked = rank_results(results, domain, goal)
-
-    # Step 3: Parse JSON response
+    logger.info(f"🤖 Trend Agent Starting | Domain: {domain}")
+    
     try:
-        # Clean the response in case LLM adds extra text
-        cleaned = ranked.strip()
-        if "```json" in cleaned:
-            cleaned = cleaned.split("```json")[1].split("```")[0]
-        elif "```" in cleaned:
-            cleaned = cleaned.split("```")[1].split("```")[0]
+        # Try web search first
+        query = f"{domain} latest trends news 2025"
+        results = search_web(query, max_results=10)
         
-        trends_data = json.loads(cleaned)
-        print("✅ Trends extracted successfully!")
-        return trends_data
-    
-    except json.JSONDecodeError:
-        print("⚠️ JSON parsing failed — returning raw response")
-        return {"raw_response": ranked}
+        if not results:
+            logger.warning("⚠️ No web results — using fallback")
+            return fallback_trends(domain, goal)
+        
+        # Rank with LLM
+        results_text = ""
+        for i, r in enumerate(results):
+            results_text += f"\nResult {i+1}:\nTitle: {r['title']}\nSummary: {r['body']}\n"
+
+        prompt = f"""You are an expert trend analyst for: {domain}
+User goal: {goal}
+
+Web search results:
+{results_text}
+
+Identify TOP 5 trending topics. Return this exact JSON:
+{{
+  "trends": [
+    {{
+      "title": "trend title",
+      "summary": "2 sentence summary of why it matters",
+      "relevance_score": 8
+    }}
+  ]
+}}
+Return ONLY the JSON."""
+
+        response = llm.invoke(prompt)
+        trends = safe_parse_json(response.content, fallback={"trends": []})
+        logger.info("✅ Trend analysis complete")
+        return trends
+
+    except Exception as e:
+        logger.error(f"❌ Trend Agent failed: {e} — using fallback")
+        return fallback_trends(domain, goal)
 
 
-# ── Test the agent ─────────────────────────────────────────
+# ── Test ──────────────────────────────────────────────────────
 if __name__ == "__main__":
-    
-    # Test with AI Engineering domain
     result = run_trend_agent(
         domain="AI Engineering and LLMs",
         goal="I want to become an AI engineer and grow my LinkedIn presence"
     )
-
-    print("\n" + "="*50)
-    print("📊 TOP TRENDING TOPICS TODAY:")
-    print("="*50)
     
+    print("\n" + "="*50)
+    print("📊 TOP TRENDING TOPICS:")
+    print("="*50)
     if "trends" in result:
-        for i, trend in enumerate(result["trends"], 1):
-            print(f"\n#{i}: {trend['title']}")
-            print(f"📝 {trend['summary']}")
-            print(f"⭐ Relevance Score: {trend['relevance_score']}/10")
-    else:
-        print(result)
+        for i, t in enumerate(result["trends"], 1):
+            print(f"\n#{i}: {t['title']}")
+            print(f"📝 {t['summary']}")
+            print(f"⭐ Score: {t['relevance_score']}/10")
