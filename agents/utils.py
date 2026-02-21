@@ -1,26 +1,22 @@
 import time
 import logging
 import functools
-
 def setup_logger(name: str):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
+    logger= logging.getlogger(name)
+    logger.setlevel(logging.INFO)
     if logger.handlers:
         return logger
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-    console.setFormatter(logging.Formatter(
-        '%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-        datefmt='%H:%M:%S'
-    ))
-    logger.addHandler(console)
-    return logger
-
-def retry(max_attempts=3, delay=2.0, backoff=2.0):
+        connsole = loggig.streamHandler()
+        connsole.setlevel(logging.INFO)
+         '%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+         datefmt='%H:%M:%S'
+         ))
+         logger.addHandler(connsole)
+         return logger
+         def retry(max_attempts=3, delay=2.0, backoff=2.0):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            logger = setup_logger("retry")
             current_delay = delay
             for attempt in range(1, max_attempts + 1):
                 try:
@@ -28,13 +24,11 @@ def retry(max_attempts=3, delay=2.0, backoff=2.0):
                 except Exception as e:
                     if attempt == max_attempts:
                         raise
-                    logger.warning(f"Retrying in {current_delay}s...")
                     time.sleep(current_delay)
                     current_delay *= backoff
         return wrapper
     return decorator
-
-def safe_parse_json(text, fallback=None):
+    def safe_parse_json(text, fallback=None):
     import json
     if fallback is None:
         fallback = {}
@@ -47,14 +41,11 @@ def safe_parse_json(text, fallback=None):
         return json.loads(cleaned.strip())
     except:
         return fallback
-
-def timer(func):
+        def timer(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        logger = setup_logger("timer")
         start = time.time()
         result = func(*args, **kwargs)
         elapsed = time.time() - start
-        logger.info(f"⏱️ {func.__name__} completed in {elapsed:.2f} seconds")
         return result
     return wrapper
