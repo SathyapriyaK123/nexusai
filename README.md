@@ -360,7 +360,7 @@ GIST:
 **Sathyapriya K**
 Fresher AI Engineer | Building real autonomous AI systems
 
-🔗 GitHub: https://github.com/SathyapriyaK123
+ GitHub: https://github.com/SathyapriyaK123
 
 ---
 
