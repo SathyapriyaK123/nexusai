@@ -328,7 +328,7 @@ Overall Score >= 7.0/10?
 
 ---
 
-## 💡 What I Learned Building This
+##  What I Learned Building This
 
 - How to design and orchestrate multi-agent AI systems with LangGraph
 - How self-correction loops (Reflexion architecture) work in practice
