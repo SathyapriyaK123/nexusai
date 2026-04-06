@@ -244,7 +244,7 @@ https://your-app-name.streamlit.app
 
 ### Daily Use
 1. Go to ** Home**
-2. Click **🚀 Run NexusAI Now**
+2. Click ** Run NexusAI Now**
 3. Wait 2-3 minutes while all 9 agents work
 4. Get your complete daily briefing:
    - Top trends in your domain
