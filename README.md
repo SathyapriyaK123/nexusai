@@ -1,4 +1,4 @@
-# 🤖 NexusAI — Autonomous AI Chief of Staff
+#  NexusAI — Autonomous AI Chief of Staff
 
 > An autonomous multi-agent AI system that researches your domain, plans your day, writes platform-specific content, and self-corrects its outputs — all without being asked. Every day. Automatically.
 
