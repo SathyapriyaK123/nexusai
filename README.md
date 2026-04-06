@@ -233,7 +233,7 @@ https://your-app-name.streamlit.app
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
 ### First Time Setup
 1. Go to **⚙️ Settings** in the sidebar
