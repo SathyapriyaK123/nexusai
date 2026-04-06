@@ -315,7 +315,7 @@ Overall Score >= 7.0/10?
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Migrate to Qdrant Cloud for vector-based semantic memory search
 - Add scheduling — run NexusAI automatically every morning
