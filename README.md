@@ -236,7 +236,7 @@ https://your-app-name.streamlit.app
 ##  How to Use
 
 ### First Time Setup
-1. Go to **⚙️ Settings** in the sidebar
+1. Go to ** Settings** in the sidebar
 2. Enter your domain (e.g. "AI Engineering and LLMs")
 3. Enter your goal (e.g. "I want to grow my LinkedIn presence")
 4. Add competitors or key players to track
