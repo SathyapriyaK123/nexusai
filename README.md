@@ -300,7 +300,7 @@ Overall Score >= 7.0/10?
 
 ---
 
-## 🧪 Key Concepts Demonstrated
+##  Key Concepts Demonstrated
 
 | Concept | Implementation |
 |---|---|
