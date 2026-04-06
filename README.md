@@ -18,7 +18,7 @@
 
 ---
 
-## 🎯 What Is NexusAI?
+##  What Is NexusAI?
 
 Most AI tools wait for you to ask questions. **NexusAI is different.**
 
