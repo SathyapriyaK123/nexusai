@@ -89,7 +89,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 - **Short-term:** In-session LangGraph state — agents share context within a run
 - **Long-term:** Persistent JSON storage — survives restarts, grows every day
 
-### 🔄 Self-Correction Loop (Reflexion Architecture)
+###  Self-Correction Loop (Reflexion Architecture)
 Based on the Reflexion research paper. Every piece of content is scored on 6 metrics, rewritten with specific critiques, and re-evaluated. Maximum 3 correction attempts before flagging for human review.
 
 ### 🌐 Real-Time Web Intelligence
