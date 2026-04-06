@@ -29,7 +29,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 -  **Plans** your daily priorities based on what is actually trending
 -  **Writes** platform-specific LinkedIn posts, Twitter threads, and networking messages
 -  **Self-corrects** every output until it meets a quality bar
-- 💾 **Stores** all findings to persistent memory for future sessions
+-  **Stores** all findings to persistent memory for future sessions
 
 **NexusAI does not wait for you. It works for you.**
 
