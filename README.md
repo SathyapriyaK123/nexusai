@@ -284,7 +284,7 @@ Overall Score >= 7.0/10?
 
 ---
 
-## 📊 Agent Responsibilities
+##  Agent Responsibilities
 
 | Agent | Input | Output |
 |---|---|---|
