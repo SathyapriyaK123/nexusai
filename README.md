@@ -370,6 +370,3 @@ MIT License — free to use, modify, and distribute.
 
 ---
 
-## ⭐ If You Found This Useful
-
-Give it a star on GitHub — it helps others discover the project!
