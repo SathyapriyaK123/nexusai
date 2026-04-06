@@ -105,7 +105,7 @@ Day 30: More context than any human assistant could hold
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Purpose | Cost |
 |---|---|---|---|
