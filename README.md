@@ -153,7 +153,7 @@ nexusai/
 
 ---
 
-## ⚙️ Installation & Local Setup
+##  Installation & Local Setup
 
 ### Step 1 — Clone the Repository
 ```bash
