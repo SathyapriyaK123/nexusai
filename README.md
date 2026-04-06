@@ -95,7 +95,7 @@ Based on the Reflexion research paper. Every piece of content is scored on 6 met
 ### 🌐 Real-Time Web Intelligence
 DuckDuckGo Search API (free, no key needed) powers live trend research, sentiment analysis, and competitor tracking every single day.
 
-### 📈 Cumulative Intelligence
+###  Cumulative Intelligence
 ```
 Day 1:  Learns your domain basics
 Day 7:  Knows patterns, key players, recurring themes
