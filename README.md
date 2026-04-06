@@ -194,7 +194,7 @@ Open your browser at `http://localhost:8501`
 
 ---
 
-## 🚀 Deployment — Streamlit Cloud
+##  Deployment — Streamlit Cloud
 
 This project is deployed for free on Streamlit Cloud.
 
