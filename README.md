@@ -92,7 +92,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 ###  Self-Correction Loop (Reflexion Architecture)
 Based on the Reflexion research paper. Every piece of content is scored on 6 metrics, rewritten with specific critiques, and re-evaluated. Maximum 3 correction attempts before flagging for human review.
 
-### 🌐 Real-Time Web Intelligence
+###  Real-Time Web Intelligence
 DuckDuckGo Search API (free, no key needed) powers live trend research, sentiment analysis, and competitor tracking every single day.
 
 ###  Cumulative Intelligence
