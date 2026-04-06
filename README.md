@@ -27,7 +27,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 -  **Researches** your domain using real-time web intelligence
 -  **Remembers** everything it has learned — getting smarter every day
 -  **Plans** your daily priorities based on what is actually trending
-- ✍️ **Writes** platform-specific LinkedIn posts, Twitter threads, and networking messages
+-  **Writes** platform-specific LinkedIn posts, Twitter threads, and networking messages
 - 🔄 **Self-corrects** every output until it meets a quality bar
 - 💾 **Stores** all findings to persistent memory for future sessions
 
