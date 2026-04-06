@@ -85,7 +85,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 ###  Multi-Agent Orchestration
 9 specialized agents coordinated by LangGraph — each expert at exactly one job. No single LLM doing everything poorly.
 
-### 🧠 Two-Layer Memory System
+###  Two-Layer Memory System
 - **Short-term:** In-session LangGraph state — agents share context within a run
 - **Long-term:** Persistent JSON storage — survives restarts, grows every day
 
