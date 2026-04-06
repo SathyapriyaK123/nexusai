@@ -121,7 +121,7 @@ Day 30: More context than any human assistant could hold
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 nexusai/
