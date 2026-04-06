@@ -355,7 +355,7 @@ Overall Score >= 7.0/10?
 
 ---
 
-## 👤 Author
+##  Author
 
 **Sathyapriya K**
 Fresher AI Engineer | Building real autonomous AI systems
