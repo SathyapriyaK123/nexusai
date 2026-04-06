@@ -364,7 +364,7 @@ Fresher AI Engineer | Building real autonomous AI systems
 
 ---
 
-## 📄 License
+##  License
 
 MIT License — free to use, modify, and distribute.
 
