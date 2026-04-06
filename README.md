@@ -254,7 +254,7 @@ https://your-app-name.streamlit.app
    - Personalised networking message
 
 ### Memory Viewer
-Go to **🧠 Memory** to see everything NexusAI has learned — search by topic, browse recent trends, and track decisions made.
+Go to ** Memory** to see everything NexusAI has learned — search by topic, browse recent trends, and track decisions made.
 
 ---
 
