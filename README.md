@@ -342,7 +342,7 @@ Overall Score >= 7.0/10?
 
 ## 🎤 Interview Talking Points
 
-**30-second pitch:**
+GIST:
 > "NexusAI is an autonomous AI chief of staff. You give it your professional goal once — from that point it runs every day without input. It researches your domain using multi-agent web intelligence, cross-references findings against persistent long-term memory that grows smarter daily, auto-plans your priorities, writes platform-specific content, and runs a self-correction loop based on the Reflexion architecture that rewrites anything below a quality threshold before delivering it."
 
 **Key technical depth:**
