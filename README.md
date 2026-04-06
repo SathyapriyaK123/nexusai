@@ -35,7 +35,7 @@ You tell NexusAI your professional goal once. From that point, every day it:
 
 ---
 
-## 🧠 System Architecture
+##  System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
