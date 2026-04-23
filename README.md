@@ -362,11 +362,6 @@ Fresher AI Engineer | Building real autonomous AI systems
 
  GitHub: https://github.com/SathyapriyaK123
 
----
 
-##  License
 
-MIT License — free to use, modify, and distribute.
-
----
 
